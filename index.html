@@ -1,157 +1,146 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="it" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beeload — AI R&D Lab & Startup</title>
+  <title>Beeload</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              gold: '#F59E0B',
-              dark: '#0B0F17',
-              card: '#111827',
-              border: '#1F2937'
-            }
-          }
-        }
-      }
     }
   </script>
+
   <style>
-    @keyframes pulseGlow {
-      0%, 100% { opacity: 0.2; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(1.05); }
+    body {
+      font-family: 'Inter', sans-serif;
     }
-    .bg-grid {
-      background-size: 30px 30px;
-      background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    }
-    .glow-effect {
-      animation: pulseGlow 6s infinite ease-in-out;
-    }
-    .fade-text {
-      transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-    }
-    .fade-out {
-      opacity: 0;
-      transform: translateY(6px);
-    }
-    .fade-in {
-      opacity: 1;
-      transform: translateY(0);
+    .font-arian {
+      font-family: 'Arian', 'Arian AMU', sans-serif;
     }
   </style>
 </head>
-<body class="bg-brand-dark text-slate-100 min-h-screen flex flex-col justify-between font-sans antialiased bg-grid relative overflow-x-hidden">
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col justify-between items-center p-6 antialiased transition-colors duration-300">
 
-  <!-- Background Ambient Glow -->
-  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none glow-effect"></div>
-
-  <!-- Header -->
-  <header class="w-full max-w-5xl mx-auto px-6 py-6 flex justify-between items-center z-10">
+  <!-- Header / Brand -->
+  <header class="w-full max-w-4xl flex justify-between items-center py-4">
     <div class="flex items-center gap-3">
-      <div class="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500 font-bold text-lg">
-        🐝
-      </div>
-      <span class="font-bold text-xl tracking-wider text-white">BEELOAD</span>
+      <!-- Immagine Logo Ufficiale -->
+      <img src="logo.png" alt="Beeload Logo" class="h-10 w-auto object-contain" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='block';">
+      
+      <!-- Fallback se il logo non è ancora stato caricato -->
+      <div id="logo-fallback" class="hidden text-amber-500 font-bold text-2xl">🐝</div>
+
+      <span class="font-arian font-bold text-2xl tracking-tight text-slate-900 dark:text-white">Beeload</span>
     </div>
-    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs text-amber-400">
-      <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-      <span>System Update in Progress</span>
+
+    <!-- Controlli Header: Status & Theme Toggle -->
+    <div class="flex items-center gap-3">
+      <div class="hidden sm:flex items-center gap-2 px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded-full text-xs text-amber-600 dark:text-amber-400 font-medium">
+        <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+        System Update In Progress
+      </div>
+
+      <!-- Pulsante Switch Light / Dark Mode -->
+      <button id="theme-toggle" class="p-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors" aria-label="Cambia tema">
+        <!-- Icona Sole (Light Mode) -->
+        <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" />
+        </svg>
+        <!-- Icona Luna (Dark Mode) -->
+        <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+        </svg>
+      </button>
     </div>
   </header>
 
-  <!-- Main Content -->
-  <main class="w-full max-w-3xl mx-auto px-6 py-12 flex-1 flex flex-col justify-center items-center text-center z-10">
-    
-    <!-- Central Icon Badge -->
-    <div class="mb-8 relative">
-      <div class="w-20 h-20 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center shadow-2xl shadow-amber-500/5">
-        <svg class="w-10 h-10 text-amber-500 animate-spin" style="animation-duration: 12s;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-        </svg>
-      </div>
-    </div>
-
-    <!-- Title -->
-    <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
-      AI R&D Lab & Startup
-    </h1>
-
-    <!-- Subtitle / Rotating Text Box -->
-    <div class="w-full bg-slate-900/80 backdrop-blur-md border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl mb-8 min-h-[140px] flex flex-col justify-center items-center">
-      <p id="rotator" class="text-slate-300 text-base sm:text-lg leading-relaxed fade-text fade-in">
-        <!-- Text injected by JS -->
+  <!-- Main Content / Rotator -->
+  <main class="w-full max-w-2xl text-center my-auto py-12">
+    <div class="space-y-6">
+      <h1 id="rotating-text" class="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100 min-h-[80px] flex items-center justify-center transition-opacity duration-500 opacity-100">
+        <!-- Testo aggiornato dinamicamente via JS -->
+      </h1>
+      
+      <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base max-w-md mx-auto">
+        Stiamo aggiornando le nostre infrastrutture. Torneremo online a breve.
       </p>
-      <div class="flex items-center gap-2 mt-4" id="indicators">
-        <!-- Dots injected by JS -->
+
+      <div class="pt-4">
+        <a href="mailto:contact@beeload.it" class="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-slate-950 bg-amber-400 hover:bg-amber-300 transition-colors rounded-xl shadow-lg shadow-amber-500/10">
+          Contact Us
+        </a>
       </div>
     </div>
-
-    <!-- Direct Contact Button -->
-    <a href="mailto:vincenzobarreca@beeload.it" class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold transition-all duration-200 shadow-lg shadow-amber-500/20">
-      Contact Founder & CEO
-    </a>
-
   </main>
 
   <!-- Footer -->
-  <footer class="w-full max-w-5xl mx-auto px-6 py-6 text-center text-xs text-slate-500 z-10">
-    <p>&copy; 2026 Beeload. All rights reserved. | <a href="https://github.com/beeload-ai" class="hover:text-amber-400 transition-colors">GitHub</a></p>
+  <footer class="w-full max-w-4xl text-center py-6 text-xs text-slate-500 dark:text-slate-500 border-t border-slate-200 dark:border-slate-900">
+    &copy; <script>document.write(new Date().getFullYear())</script> <span class="font-arian font-bold text-slate-700 dark:text-slate-400">Beeload</span>. All rights reserved.
   </footer>
 
-  <!-- Rotation Script -->
+  <!-- Script Gestione Tema & Rotatore Multilingua -->
   <script>
+    // --- GESTIONE TEMA LIGHT/DARK ---
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+    // Imposta tema iniziale in base a localStorage o preferenze di sistema
+    if (localStorage.getItem('theme') === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+      document.documentElement.classList.remove('dark');
+      darkIcon.classList.remove('hidden');
+    } else {
+      document.documentElement.classList.add('dark');
+      lightIcon.classList.remove('hidden');
+    }
+
+    // Toggle Tema al click
+    themeToggleBtn.addEventListener('click', function() {
+      lightIcon.classList.toggle('hidden');
+      darkIcon.classList.toggle('hidden');
+
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    // --- ROTATORE TESTO MULTILINGUA ---
     const messages = [
-      { text: "Beeload R&D Lab — Our platform is under maintenance and undergoing a major update. We will be back online shortly.", lang: "EN" },
-      { text: "Beeload R&D Lab — La nostra piattaforma è in manutenzione e in fase di aggiornamento. Torneremo online a breve.", lang: "IT" },
-      { text: "Beeload R&D Lab — Notre plateforme est en maintenance et en cours de mise à jour. Nous serons de retour sous peu.", lang: "FR" },
-      { text: "Beeload R&D Lab — Unsere Plattform wird gewartet und aktualisiert. Wir sind in Kürze wieder online.", lang: "DE" },
-      { text: "Beeload R&D Lab — Nuestra plataforma está en mantenimiento y actualización. Volveremos a estar en línea muy pronto.", lang: "ES" },
-      { text: "Beeload R&D Lab — A nossa plataforma está em manutenção e a ser atualizada. Estaremos de volta em breve.", lang: "PT" },
-      { text: "Beeload R&D Lab — Наша платформа находится на техническом обслуживании и обновляется. Мы скоро вернемся в сеть.", lang: "RU" },
-      { text: "Beeload R&D Lab — 我们的平台正在进行系统维护与升级，将很快重新上线。", lang: "ZH" }
+      "Stiamo aggiornando i nostri sistemi.",
+      "We are updating our systems.",
+      "Estamos aggiornando nuestros sistemas.",
+      "Nous mettons à jour nos systèmes.",
+      "Wir aktualisieren unsere Systeme.",
+      "Nossos sistemas estão sendo atualizados.",
+      "Sistemlerimizi güncelliyoruz.",
+      "Perbarui sistem kami sedang berlangsung."
     ];
 
     let currentIndex = 0;
-    const rotator = document.getElementById("rotator");
-    const indicatorsContainer = document.getElementById("indicators");
-
-    // Render indicators
-    messages.forEach((m, idx) => {
-      const dot = document.createElement("span");
-      dot.className = `h-1.5 rounded-full transition-all duration-300 ${idx === 0 ? "w-6 bg-amber-500" : "w-1.5 bg-slate-700"}`;
-      dot.id = `dot-${idx}`;
-      indicatorsContainer.appendChild(dot);
-    });
+    const textElement = document.getElementById("rotating-text");
 
     function updateText() {
-      rotator.classList.remove("fade-in");
-      rotator.classList.add("fade-out");
-
+      textElement.classList.add("opacity-0");
       setTimeout(() => {
-        // Update active dot
-        document.getElementById(`dot-${currentIndex}`).className = "w-1.5 h-1.5 rounded-full bg-slate-700 transition-all duration-300";
+        textElement.textContent = messages[currentIndex];
+        textElement.classList.remove("opacity-0");
         currentIndex = (currentIndex + 1) % messages.length;
-        document.getElementById(`dot-${currentIndex}`).className = "w-6 h-1.5 rounded-full bg-amber-500 transition-all duration-300";
-
-        rotator.textContent = messages[currentIndex].text;
-        rotator.classList.remove("fade-out");
-        rotator.classList.add("fade-in");
       }, 500);
     }
 
-    // Initialize first text
-    rotator.textContent = messages[0].text;
-
-    // Change language every 3.5 seconds
+    updateText();
     setInterval(updateText, 3500);
   </script>
 </body>
