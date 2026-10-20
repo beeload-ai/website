@@ -19,11 +19,21 @@
   </script>
 
   <style>
+    /* Definizione del font Arian tramite i file inclusi nel repository */
+    @font-face {
+      font-family: 'Arian';
+      src: url('6b366b3fb0c60e41028afb295df3f8ae.woff2') format('woff2'),
+           url('Arian LT.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
     }
     .font-arian {
-      font-family: 'Arian', 'Arian AMU', sans-serif;
+      font-family: 'Arian', sans-serif !important;
     }
   </style>
 </head>
@@ -32,10 +42,13 @@
   <!-- Header / Brand -->
   <header class="w-full max-w-4xl flex justify-between items-center py-4">
     <div class="flex items-center gap-3">
-      <!-- Immagine Logo Ufficiale -->
-      <img src="logo.png" alt="Beeload Logo" class="h-10 w-auto object-contain" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='block';">
+      <!-- Logo Light Mode -->
+      <img id="logo-light" src="logo-light.png" alt="Beeload Logo" class="h-10 w-auto object-contain dark:hidden" onerror="this.style.display='none'; checkFallback();">
       
-      <!-- Fallback se il logo non è ancora stato caricato -->
+      <!-- Logo Dark Mode -->
+      <img id="logo-dark" src="logo-dark.png" alt="Beeload Logo" class="h-10 w-auto object-contain hidden dark:block" onerror="this.style.display='none'; checkFallback();">
+      
+      <!-- Fallback se i file logo non sono ancora stati caricati -->
       <div id="logo-fallback" class="hidden text-amber-500 font-bold text-2xl">🐝</div>
 
       <span class="font-arian font-bold text-2xl tracking-tight text-slate-900 dark:text-white">Beeload</span>
@@ -50,11 +63,11 @@
 
       <!-- Pulsante Switch Light / Dark Mode -->
       <button id="theme-toggle" class="p-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors" aria-label="Cambia tema">
-        <!-- Icona Sole (Light Mode) -->
+        <!-- Icona Sole -->
         <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
           <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" />
         </svg>
-        <!-- Icona Luna (Dark Mode) -->
+        <!-- Icona Luna -->
         <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
           <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
         </svg>
@@ -88,12 +101,18 @@
 
   <!-- Script Gestione Tema & Rotatore Multilingua -->
   <script>
-    // --- GESTIONE TEMA LIGHT/DARK ---
+    function checkFallback() {
+      const imgLight = document.getElementById('logo-light');
+      const imgDark = document.getElementById('logo-dark');
+      if ((!imgLight || imgLight.style.display === 'none') && (!imgDark || imgDark.style.display === 'none')) {
+        document.getElementById('logo-fallback').classList.remove('hidden');
+      }
+    }
+
     const themeToggleBtn = document.getElementById('theme-toggle');
     const darkIcon = document.getElementById('theme-toggle-dark-icon');
     const lightIcon = document.getElementById('theme-toggle-light-icon');
 
-    // Imposta tema iniziale in base a localStorage o preferenze di sistema
     if (localStorage.getItem('theme') === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
       document.documentElement.classList.remove('dark');
       darkIcon.classList.remove('hidden');
@@ -102,7 +121,6 @@
       lightIcon.classList.remove('hidden');
     }
 
-    // Toggle Tema al click
     themeToggleBtn.addEventListener('click', function() {
       lightIcon.classList.toggle('hidden');
       darkIcon.classList.toggle('hidden');
@@ -116,7 +134,6 @@
       }
     });
 
-    // --- ROTATORE TESTO MULTILINGUA ---
     const messages = [
       "Stiamo aggiornando i nostri sistemi.",
       "We are updating our systems.",
