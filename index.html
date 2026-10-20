@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beeload — AI R&D Lab & Startup</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              gold: '#F59E0B',
+              dark: '#0B0F17',
+              card: '#111827',
+              border: '#1F2937'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.05); }
+    }
+    .bg-grid {
+      background-size: 30px 30px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+    .glow-effect {
+      animation: pulseGlow 6s infinite ease-in-out;
+    }
+    .fade-text {
+      transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    }
+    .fade-out {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    .fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-brand-dark text-slate-100 min-h-screen flex flex-col justify-between font-sans antialiased bg-grid relative overflow-x-hidden">
+
+  <!-- Background Ambient Glow -->
+  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none glow-effect"></div>
+
+  <!-- Header -->
+  <header class="w-full max-w-5xl mx-auto px-6 py-6 flex justify-between items-center z-10">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500 font-bold text-lg">
+        🐝
+      </div>
+      <span class="font-bold text-xl tracking-wider text-white">BEELOAD</span>
+    </div>
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs text-amber-400">
+      <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+      <span>System Update in Progress</span>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="w-full max-w-3xl mx-auto px-6 py-12 flex-1 flex flex-col justify-center items-center text-center z-10">
+    
+    <!-- Central Icon Badge -->
+    <div class="mb-8 relative">
+      <div class="w-20 h-20 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center shadow-2xl shadow-amber-500/5">
+        <svg class="w-10 h-10 text-amber-500 animate-spin" style="animation-duration: 12s;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Title -->
+    <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
+      AI R&D Lab & Startup
+    </h1>
+
+    <!-- Subtitle / Rotating Text Box -->
+    <div class="w-full bg-slate-900/80 backdrop-blur-md border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl mb-8 min-h-[140px] flex flex-col justify-center items-center">
+      <p id="rotator" class="text-slate-300 text-base sm:text-lg leading-relaxed fade-text fade-in">
+        <!-- Text injected by JS -->
+      </p>
+      <div class="flex items-center gap-2 mt-4" id="indicators">
+        <!-- Dots injected by JS -->
+      </div>
+    </div>
+
+    <!-- Direct Contact Button -->
+    <a href="mailto:vincenzobarreca@beeload.it" class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold transition-all duration-200 shadow-lg shadow-amber-500/20">
+      Contact Founder & CEO
+    </a>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full max-w-5xl mx-auto px-6 py-6 text-center text-xs text-slate-500 z-10">
+    <p>&copy; 2026 Beeload. All rights reserved. | <a href="https://github.com/beeload-ai" class="hover:text-amber-400 transition-colors">GitHub</a></p>
+  </footer>
+
+  <!-- Rotation Script -->
+  <script>
+    const messages = [
+      { text: "Beeload R&D Lab — Our platform is under maintenance and undergoing a major update. We will be back online shortly.", lang: "EN" },
+      { text: "Beeload R&D Lab — La nostra piattaforma è in manutenzione e in fase di aggiornamento. Torneremo online a breve.", lang: "IT" },
+      { text: "Beeload R&D Lab — Notre plateforme est en maintenance et en cours de mise à jour. Nous serons de retour sous peu.", lang: "FR" },
+      { text: "Beeload R&D Lab — Unsere Plattform wird gewartet und aktualisiert. Wir sind in Kürze wieder online.", lang: "DE" },
+      { text: "Beeload R&D Lab — Nuestra plataforma está en mantenimiento y actualización. Volveremos a estar en línea muy pronto.", lang: "ES" },
+      { text: "Beeload R&D Lab — A nossa plataforma está em manutenção e a ser atualizada. Estaremos de volta em breve.", lang: "PT" },
+      { text: "Beeload R&D Lab — Наша платформа находится на техническом обслуживании и обновляется. Мы скоро вернемся в сеть.", lang: "RU" },
+      { text: "Beeload R&D Lab — 我们的平台正在进行系统维护与升级，将很快重新上线。", lang: "ZH" }
+    ];
+
+    let currentIndex = 0;
+    const rotator = document.getElementById("rotator");
+    const indicatorsContainer = document.getElementById("indicators");
+
+    // Render indicators
+    messages.forEach((m, idx) => {
+      const dot = document.createElement("span");
+      dot.className = `h-1.5 rounded-full transition-all duration-300 ${idx === 0 ? "w-6 bg-amber-500" : "w-1.5 bg-slate-700"}`;
+      dot.id = `dot-${idx}`;
+      indicatorsContainer.appendChild(dot);
+    });
+
+    function updateText() {
+      rotator.classList.remove("fade-in");
+      rotator.classList.add("fade-out");
+
+      setTimeout(() => {
+        // Update active dot
+        document.getElementById(`dot-${currentIndex}`).className = "w-1.5 h-1.5 rounded-full bg-slate-700 transition-all duration-300";
+        currentIndex = (currentIndex + 1) % messages.length;
+        document.getElementById(`dot-${currentIndex}`).className = "w-6 h-1.5 rounded-full bg-amber-500 transition-all duration-300";
+
+        rotator.textContent = messages[currentIndex].text;
+        rotator.classList.remove("fade-out");
+        rotator.classList.add("fade-in");
+      }, 500);
+    }
+
+    // Initialize first text
+    rotator.textContent = messages[0].text;
+
+    // Change language every 3.5 seconds
+    setInterval(updateText, 3500);
+  </script>
+</body>
+</html>
