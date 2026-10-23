@@ -3,7 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anthropic — Inspired Layout</title>
+  <title>Beeload — AI Research & Ecosystem</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -12,45 +17,57 @@
       theme: {
         extend: {
           colors: {
-            anthropicBg: '#faf9f5',
-            anthropicText: '#141413',
-            anthropicCard: '#f4f3ef',
-            anthropicBorder: '#e6e4df',
+            beeloadBg: '#faf9f5',
+            beeloadText: '#141413',
+            beeloadCard: '#f4f3ef',
+            beeloadBorder: '#e6e4df',
           }
         }
       }
     }
   </script>
 
-  <!-- Google Fonts: Inter -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
   <style>
+    /* Definizione del font Arian */
+    @font-face {
+      font-family: 'Arian';
+      src: url('6b366b3fb0c60e41028afb295df3f8ae.woff2') format('woff2'),
+           url('Arian LT.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
       background-color: #faf9f5;
       color: #141413;
     }
+    .font-arian {
+      font-family: 'Arian', sans-serif !important;
+    }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-stone-200">
+<body class="min-h-screen flex flex-col justify-between selection:bg-amber-200">
 
   <!-- Header / Navbar -->
   <header class="w-full border-b border-[#e6e4df] px-6 lg:px-12 py-5 flex items-center justify-between bg-[#faf9f5] sticky top-0 z-50">
     <div class="flex items-center gap-10">
-      <a href="#" class="font-bold text-xl tracking-tighter text-stone-900">anthropic</a>
+      <a href="#" class="font-arian font-bold text-2xl tracking-tight text-stone-900">Beeload</a>
       <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-stone-600">
         <a href="#" class="hover:text-stone-900 transition-colors">Research</a>
-        <a href="#" class="hover:text-stone-900 transition-colors">Claude</a>
+        <a href="#" class="hover:text-stone-900 transition-colors">Ecosystem</a>
+        <a href="#" class="hover:text-stone-900 transition-colors">Vision</a>
         <a href="#" class="hover:text-stone-900 transition-colors">Company</a>
-        <a href="#" class="hover:text-stone-900 transition-colors">News</a>
       </nav>
     </div>
-    <div>
-      <a href="#" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium bg-stone-900 text-stone-50 rounded-full hover:bg-stone-800 transition-colors">
-        Try Claude
+    <div class="flex items-center gap-3">
+      <div class="hidden sm:flex items-center gap-2 px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded-full text-xs text-amber-700 font-medium">
+        <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+        Dev Preview
+      </div>
+      <a href="mailto:contact@beeload.it" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium bg-stone-900 text-stone-50 rounded-full hover:bg-stone-800 transition-colors">
+        Contact Us
       </a>
     </div>
   </header>
@@ -61,57 +78,57 @@
     <!-- Hero Section -->
     <div class="max-w-3xl mb-24">
       <h1 class="text-4xl md:text-6xl font-normal tracking-tight leading-[1.1] mb-8 text-stone-900">
-        AI research and products that put safety at the frontier.
+        Transcending traditional AI interfaces through Swarm Intelligence.
       </h1>
       <p class="text-lg md:text-xl text-stone-600 font-light leading-relaxed mb-10">
-        Anthropic is an AI safety and research company. We build reliable, interpretable, and steerable AI systems.
+        Beeload is an advanced AI research laboratory building decentralized micro-agent ecosystems, edge-optimized architectures, and non-linear spatial environments.
       </p>
       <div class="flex flex-wrap items-center gap-4">
         <a href="#" class="px-6 py-3 bg-stone-900 text-stone-50 text-sm font-medium rounded-full hover:bg-stone-800 transition-colors">
-          Read our research
+          Explore Research
         </a>
         <a href="#" class="px-6 py-3 border border-stone-300 text-stone-900 text-sm font-medium rounded-full hover:bg-stone-100 transition-colors">
-          Explore Claude
+          System Architecture
         </a>
       </div>
     </div>
 
     <!-- Editorial Grid / Latest Updates -->
     <div class="border-t border-[#e6e4df] pt-12">
-      <h2 class="text-xs font-semibold uppercase tracking-widest text-stone-500 mb-8">Latest updates</h2>
+      <h2 class="text-xs font-semibold uppercase tracking-widest text-stone-500 mb-8">Pillars & Updates</h2>
       
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         
         <!-- Card 1 -->
         <article class="group cursor-pointer">
           <div class="bg-[#f4f3ef] border border-[#e6e4df] h-48 mb-4 rounded-lg overflow-hidden flex items-center justify-center text-stone-400 group-hover:border-stone-400 transition-colors">
-            <span class="text-xs font-mono">Research Preview</span>
+            <span class="text-xs font-mono">Pillar I</span>
           </div>
-          <span class="text-xs text-stone-500 mb-2 block font-medium">Research • October 2026</span>
+          <span class="text-xs text-stone-500 mb-2 block font-medium">Swarm Intelligence • 2026</span>
           <h3 class="text-lg font-medium group-hover:underline leading-snug text-stone-900">
-            Advancing interpretability in large language models through automated circuit discovery.
+            Collaborative micro-agents designed to solve complex multi-step computational tasks autonomously.
           </h3>
         </article>
 
         <!-- Card 2 -->
         <article class="group cursor-pointer">
           <div class="bg-[#f4f3ef] border border-[#e6e4df] h-48 mb-4 rounded-lg overflow-hidden flex items-center justify-center text-stone-400 group-hover:border-stone-400 transition-colors">
-            <span class="text-xs font-mono">Product Update</span>
+            <span class="text-xs font-mono">Pillar II</span>
           </div>
-          <span class="text-xs text-stone-500 mb-2 block font-medium">Product • September 2026</span>
+          <span class="text-xs text-stone-500 mb-2 block font-medium">Edge Architecture • 2026</span>
           <h3 class="text-lg font-medium group-hover:underline leading-snug text-stone-900">
-            Introducing new capabilities for Claude Enterprise with expanded context windows.
+            High-efficiency mobile deployment models engineered for peak performance and near-zero latency.
           </h3>
         </article>
 
         <!-- Card 3 -->
         <article class="group cursor-pointer">
           <div class="bg-[#f4f3ef] border border-[#e6e4df] h-48 mb-4 rounded-lg overflow-hidden flex items-center justify-center text-stone-400 group-hover:border-stone-400 transition-colors">
-            <span class="text-xs font-mono">Safety & Policy</span>
+            <span class="text-xs font-mono">Pillar III</span>
           </div>
-          <span class="text-xs text-stone-500 mb-2 block font-medium">Company • August 2026</span>
+          <span class="text-xs text-stone-500 mb-2 block font-medium">Spatial UI • 2026</span>
           <h3 class="text-lg font-medium group-hover:underline leading-snug text-stone-900">
-            Our commitment to responsible scaling policies and frontier safety measures.
+            Replacing linear conversation lists with dynamic, graph-based interactive knowledge canvases.
           </h3>
         </article>
 
@@ -124,18 +141,19 @@
   <footer class="w-full border-t border-[#e6e4df] py-12 px-6 lg:px-12 text-xs text-stone-600 bg-[#faf9f5]">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
       <div class="flex items-center gap-6 flex-wrap">
-        <span class="font-bold text-stone-900">anthropic</span>
+        <span class="font-arian font-bold text-stone-900 text-sm">Beeload</span>
         <a href="#" class="hover:text-stone-900 transition-colors">Terms</a>
         <a href="#" class="hover:text-stone-900 transition-colors">Privacy</a>
-        <a href="#" class="hover:text-stone-900 transition-colors">Careers</a>
+        <a href="#" class="hover:text-stone-900 transition-colors">GitHub</a>
         <a href="#" class="hover:text-stone-900 transition-colors">X (Twitter)</a>
         <a href="#" class="hover:text-stone-900 transition-colors">LinkedIn</a>
       </div>
       <div>
-        <span class="text-stone-500">© 2026 Anthropic PBC</span>
+        <span class="text-stone-500"><span class="font-arian">Beeload</span> © 2026</span>
       </div>
     </div>
   </footer>
 
 </body>
 </html>
+
