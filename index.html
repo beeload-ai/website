@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beeload — Frontier AI & Research Lab</title>
+  <title>Beeload — AI Research & Ecosystem</title>
 
-  <!-- Google Fonts: Inter -->
+  <!-- Google Fonts: Inter e JetBrains Mono per dettagli tech -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -17,13 +17,15 @@
       darkMode: 'class',
       theme: {
         extend: {
+          fontFamily: {
+            mono: ['JetBrains Mono', 'monospace'],
+          },
           colors: {
-            brandPaper: '#faf9f5',
-            brandDark: '#0c0d0e',
-            brandCardLight: '#f3f2ec',
-            brandCardDark: '#141518',
-            brandBorderLight: '#e5e3da',
-            brandBorderDark: '#22242a'
+            anthropicWarm: '#fbfaf7',
+            openaiDark: '#080808',
+            cardDark: '#111111',
+            borderDark: '#222222',
+            accentAmber: '#f59e0b',
           }
         }
       }
@@ -31,7 +33,6 @@
   </script>
 
   <style>
-    /* Font Arian */
     @font-face {
       font-family: 'Arian';
       src: url('6b366b3fb0c60e41028afb295df3f8ae.woff2') format('woff2'),
@@ -47,217 +48,239 @@
     .font-arian {
       font-family: 'Arian', sans-serif !important;
     }
+    
+    /* Effetto sfumatura sottile sfondo stile OpenAI/Anthropic */
+    .hero-glow {
+      background: radial-gradient(circle at 50% 20%, rgba(245, 158, 11, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
+    }
   </style>
 </head>
-<body class="bg-brandPaper text-stone-900 dark:bg-brandDark dark:text-stone-100 min-h-screen flex flex-col justify-between antialiased transition-colors duration-300 selection:bg-amber-400/30">
+<body class="bg-openaiDark text-stone-100 min-h-screen flex flex-col justify-between antialiased selection:bg-amber-500/30 selection:text-amber-200">
 
-  <!-- HEADER / NAVIGATION (Stile Ibrido Anthropic + OpenAI) -->
-  <header class="w-full border-b border-brandBorderLight dark:border-brandBorderDark px-6 md:px-12 py-5 bg-brandPaper/90 dark:bg-brandDark/90 backdrop-blur-md sticky top-0 z-50 transition-colors duration-300">
+  <!-- HEADER (Minimal, trasparente con sfocatura) -->
+  <header class="w-full border-b border-borderDark px-6 lg:px-16 py-6 bg-openaiDark/80 backdrop-blur-md sticky top-0 z-50">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       
-      <div class="flex items-center gap-10">
-        <!-- Logo Brand -->
-        <a href="#" class="flex items-center gap-3">
-          <img id="logo-light" src="logo-light.png" alt="Beeload" class="h-8 w-auto object-contain dark:hidden" onerror="this.style.display='none'; checkFallback();">
-          <img id="logo-dark" src="logo-dark.png" alt="Beeload" class="h-8 w-auto object-contain hidden dark:block" onerror="this.style.display='none'; checkFallback();">
-          <span id="logo-fallback" class="hidden text-amber-500 font-bold text-xl">🐝</span>
-          <span class="font-arian font-bold text-2xl tracking-tight text-stone-900 dark:text-white">Beeload</span>
-        </a>
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <img id="logo-dark" src="logo-dark.png" alt="Beeload" class="h-7 w-auto object-contain" onerror="this.style.display='none'; checkFallback();">
+        <span id="logo-fallback" class="hidden text-amber-500 font-bold text-xl">🐝</span>
+        <span class="font-arian font-bold text-2xl tracking-tight text-white group-hover:text-amber-400 transition-colors">Beeload</span>
+      </a>
 
-        <!-- Navigation Links -->
-        <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-stone-600 dark:text-stone-400">
-          <a href="#research" class="hover:text-stone-900 dark:hover:text-white transition-colors">Ricerca</a>
-          <a href="#ecosystem" class="hover:text-stone-900 dark:hover:text-white transition-colors">Ecosistema</a>
-          <a href="#swarm" class="hover:text-stone-900 dark:hover:text-white transition-colors">Swarm AI</a>
-          <a href="#spatial" class="hover:text-stone-900 dark:hover:text-white transition-colors">Spatial Canvas</a>
-        </nav>
-      </div>
+      <!-- Menu Minimal OpenAI-style -->
+      <nav class="hidden md:flex items-center gap-10 text-sm font-medium text-stone-400">
+        <a href="#research" class="hover:text-white transition-colors">Research</a>
+        <a href="#ecosystem" class="hover:text-white transition-colors">Ecosystem</a>
+        <a href="#company" class="hover:text-white transition-colors">Company</a>
+      </nav>
 
-      <!-- Header Controls -->
-      <div class="flex items-center gap-4">
-        <div class="hidden sm:flex items-center gap-2 px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded-full text-xs text-amber-700 dark:text-amber-400 font-medium">
-          <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-          Ecosystem v1.0
+      <!-- Badge Stato & Azione -->
+      <div class="flex items-center gap-5">
+        <div class="hidden sm:flex items-center gap-2 px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded-full text-xs font-mono text-amber-400">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+          LABS V1.0
         </div>
-
-        <!-- Theme Switcher -->
-        <button id="theme-toggle" class="p-2.5 rounded-full bg-stone-200/70 dark:bg-stone-800/70 text-stone-700 dark:text-stone-300 hover:bg-stone-300 dark:hover:bg-stone-700 transition-colors" aria-label="Cambia tema">
-          <svg id="theme-toggle-light-icon" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" />
-          </svg>
-          <svg id="theme-toggle-dark-icon" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-          </svg>
-        </button>
-
-        <a href="mailto:contact@beeload.it" class="px-5 py-2 text-sm font-medium bg-stone-900 text-stone-50 dark:bg-stone-100 dark:text-stone-900 rounded-full hover:opacity-90 transition-opacity">
-          Contattaci
+        <a href="mailto:contact@beeload.it" class="px-5 py-2 text-xs font-semibold uppercase tracking-wider bg-white text-black rounded-full hover:bg-stone-200 transition-colors">
+          Contact Us
         </a>
       </div>
 
     </div>
   </header>
 
-  <!-- HERO SECTION (Editoriale Anthropic + Vision Beeload) -->
-  <main class="w-full max-w-7xl mx-auto px-6 md:px-12 py-20 lg:py-28 flex-grow">
+  <!-- HERO SECTION (Impatto Tipografico Imponente) -->
+  <main class="w-full max-w-7xl mx-auto px-6 lg:px-16 py-24 lg:py-36 flex-grow hero-glow">
     
-    <div class="max-w-4xl mb-24">
-      <div class="inline-block mb-6 px-3 py-1 bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-400 rounded-full text-xs font-semibold tracking-wide uppercase">
-        Research & Development Laboratory
-      </div>
-      
-      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-normal tracking-tight leading-[1.08] mb-8 text-stone-900 dark:text-white">
-        Oltre le interfacce tradizionali. Intelligenze diffuse in uno <span class="font-arian text-amber-600 dark:text-amber-400 font-bold">Ecosistema Spaziale</span>.
-      </h1>
-
-      <p class="text-lg sm:text-2xl text-stone-600 dark:text-stone-400 font-light leading-relaxed mb-10 max-w-3xl">
-        Beeload supera i limiti dei chatbot lineari. Sviluppiamo intelligenza collettiva (Swarm AI), architetture mobile Edge-first e canvas di interazione spaziale non-lineari.
+    <div class="max-w-5xl">
+      <!-- Tag Monospaziato Stile Anthropic -->
+      <p class="text-xs font-mono text-amber-500 uppercase tracking-widest mb-6">
+        [ AI RESEARCH & FRONTIER LAB ]
       </p>
 
-      <div class="flex flex-wrap items-center gap-4">
-        <a href="#ecosystem" class="px-7 py-3.5 bg-stone-900 text-stone-50 dark:bg-amber-400 dark:text-stone-950 text-sm font-semibold rounded-full hover:bg-stone-800 dark:hover:bg-amber-300 transition-colors shadow-lg shadow-amber-500/5">
+      <!-- Titolo Gigante Stile OpenAI -->
+      <h1 class="text-5xl sm:text-7xl lg:text-8xl font-normal tracking-tight leading-[1.02] mb-10 text-white">
+        Intelligence, <br/>
+        <span class="font-arian text-amber-400 font-bold">decentralized</span>.
+      </h1>
+
+      <p class="text-xl sm:text-2xl text-stone-400 font-light leading-relaxed max-w-3xl mb-12">
+        Sviluppiamo il nuovo paradigma dell'intelligenza artificiale: sciami di micro-agenti autonomi, architettura Edge-first e canvas di interazione spaziale non-lineari.
+      </p>
+
+      <!-- CTA Minimal -->
+      <div class="flex flex-wrap items-center gap-6">
+        <a href="#ecosystem" class="px-8 py-4 bg-amber-500 text-black text-sm font-semibold rounded-full hover:bg-amber-400 transition-all shadow-lg shadow-amber-500/10">
           Esplora l'Ecosistema
         </a>
-        <a href="mailto:contact@beeload.it" class="px-7 py-3.5 border border-stone-300 dark:border-stone-800 text-stone-900 dark:text-stone-200 text-sm font-medium rounded-full hover:bg-stone-100 dark:hover:bg-stone-800/60 transition-colors">
-          Collabora con il Lab
+        <a href="#research" class="px-8 py-4 border border-borderDark text-stone-300 text-sm font-medium rounded-full hover:border-stone-500 hover:text-white transition-all">
+          Leggi le Specifiche Tecniche →
         </a>
       </div>
     </div>
 
-    <!-- ROTATORE MULTILINGUA (Notifica Operativa) -->
-    <div class="my-16 p-8 rounded-2xl bg-brandCardLight dark:bg-brandCardDark border border-brandBorderLight dark:border-brandBorderDark flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="space-y-1 text-center md:text-left">
-        <span class="text-xs font-mono text-amber-600 dark:text-amber-400 uppercase tracking-widest">Stato del sistema</span>
-        <h3 id="rotating-text" class="text-xl font-medium text-stone-900 dark:text-stone-100 transition-opacity duration-500 opacity-100 min-h-[30px] flex items-center">
-          <!-- Testo dinamico script -->
-        </h3>
-      </div>
+    <!-- ROTATORE DI STATO (Integrazione minimale) -->
+    <div class="mt-28 pt-8 border-t border-borderDark flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono text-stone-500">
       <div class="flex items-center gap-3">
-        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
-        <span class="text-xs text-stone-500 font-mono">Infrastruttura Attiva</span>
+        <span class="text-amber-500">></span>
+        <span id="rotating-text" class="text-stone-300 transition-opacity duration-500 opacity-100">
+          Infrastruttura Swarm Intelligence in fase di calibrazione.
+        </span>
       </div>
+      <span>SYSTEM STATUS: OPERATIONAL</span>
     </div>
 
-    <!-- PILLARI DELL'ECOSISTEMA (3 Card in stile Anthropic / Grid OpenAI) -->
-    <div id="ecosystem" class="border-t border-brandBorderLight dark:border-brandBorderDark pt-16">
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
-        <div>
-          <h2 class="text-xs font-semibold uppercase tracking-widest text-stone-500 mb-3">I Pilastri di Beeload</h2>
-          <p class="text-2xl font-normal text-stone-900 dark:text-stone-100">Tre tecnologie convergenti in un unico ecosistema.</p>
-        </div>
+    <!-- SEZIONE ECOSYSTEM / I 3 PILASTRI (Griglia Editoriale Anthropic + Tech OpenAI) -->
+    <section id="ecosystem" class="mt-32 pt-20 border-t border-borderDark">
+      <div class="mb-16">
+        <h2 class="text-xs font-mono uppercase tracking-widest text-amber-500 mb-2">01 / ARCHITETTURA</h2>
+        <p class="text-3xl sm:text-4xl font-normal text-white">I Tre Prodotti dell'Ecosistema Beeload</p>
       </div>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        <!-- Pillar 1: Swarm Intelligence -->
-        <article id="swarm" class="group bg-brandCardLight dark:bg-brandCardDark border border-brandBorderLight dark:border-brandBorderDark p-8 rounded-2xl hover:border-amber-500/50 transition-all duration-300 flex flex-col justify-between">
+
+        <!-- Card 1: Swarm -->
+        <div class="group bg-cardDark border border-borderDark p-8 rounded-2xl hover:border-amber-500/40 transition-all duration-300 flex flex-col justify-between h-96">
           <div>
-            <div class="flex items-center justify-between mb-8">
-              <span class="text-xs font-mono px-3 py-1 bg-stone-200/60 dark:bg-stone-800 text-stone-700 dark:text-stone-300 rounded-md">Prodotto 01</span>
-              <span class="text-2xl">🐝</span>
+            <div class="flex justify-between items-center mb-8">
+              <span class="text-xs font-mono text-stone-500">PILLAR // 01</span>
+              <span class="w-2 h-2 rounded-full bg-amber-500"></span>
             </div>
-            <h3 class="text-xl font-semibold mb-3 text-stone-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+            <h3 class="text-2xl font-medium text-white mb-4 group-hover:text-amber-400 transition-colors">
               Swarm Intelligence
             </h3>
-            <p class="text-sm text-stone-600 dark:text-stone-400 leading-relaxed font-light mb-6">
-              Micro-agenti autonomi e collaborativi che interagiscono in tempo reale per risolvere problemi complessi, simulando la coordinazione biologica di uno sciame.
+            <p class="text-sm text-stone-400 leading-relaxed font-light">
+              Coordinamento autonomo di micro-agenti specializzati. Risoluzione organica di problemi complessi tramite intelligenza di gruppo.
             </p>
           </div>
-          <span class="text-xs font-medium text-amber-600 dark:text-amber-400 inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-            Documentazione di ricerca →
+          <span class="text-xs font-mono text-stone-500 group-hover:text-amber-400 transition-colors">
+            SWARM_ENGINE_V1 ↗
           </span>
-        </article>
+        </div>
 
-        <!-- Pillar 2: Edge Optimization -->
-        <article class="group bg-brandCardLight dark:bg-brandCardDark border border-brandBorderLight dark:border-brandBorderDark p-8 rounded-2xl hover:border-amber-500/50 transition-all duration-300 flex flex-col justify-between">
+        <!-- Card 2: Edge -->
+        <div class="group bg-cardDark border border-borderDark p-8 rounded-2xl hover:border-amber-500/40 transition-all duration-300 flex flex-col justify-between h-96">
           <div>
-            <div class="flex items-center justify-between mb-8">
-              <span class="text-xs font-mono px-3 py-1 bg-stone-200/60 dark:bg-stone-800 text-stone-700 dark:text-stone-300 rounded-md">Prodotto 02</span>
-              <span class="text-2xl">📱</span>
+            <div class="flex justify-between items-center mb-8">
+              <span class="text-xs font-mono text-stone-500">PILLAR // 02</span>
+              <span class="w-2 h-2 rounded-full bg-amber-500"></span>
             </div>
-            <h3 class="text-xl font-semibold mb-3 text-stone-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
-              Edge-First Architecture
+            <h3 class="text-2xl font-medium text-white mb-4 group-hover:text-amber-400 transition-colors">
+              Edge Performance
             </h3>
-            <p class="text-sm text-stone-600 dark:text-stone-400 leading-relaxed font-light mb-6">
-              Sistemi AI ad alta efficienza ottimizzati per l'esecuzione direttamente su dispositivi mobili e PWA, garantendo latenza minima e privacy assoluta.
+            <p class="text-sm text-stone-400 leading-relaxed font-light">
+              Modelli ottimizzati per il calcolo locale su PWA e smartphone. Zero latenza di rete, massima efficienza e privacy totale.
             </p>
           </div>
-          <span class="text-xs font-medium text-amber-600 dark:text-amber-400 inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-            Specifiche Mobile PWA →
+          <span class="text-xs font-mono text-stone-500 group-hover:text-amber-400 transition-colors">
+            MOBILE_EDGE_CORE ↗
           </span>
-        </article>
+        </div>
 
-        <!-- Pillar 3: Spatial Canvas -->
-        <article id="spatial" class="group bg-brandCardLight dark:bg-brandCardDark border border-brandBorderLight dark:border-brandBorderDark p-8 rounded-2xl hover:border-amber-500/50 transition-all duration-300 flex flex-col justify-between">
+        <!-- Card 3: Spatial Canvas -->
+        <div class="group bg-cardDark border border-borderDark p-8 rounded-2xl hover:border-amber-500/40 transition-all duration-300 flex flex-col justify-between h-96">
           <div>
-            <div class="flex items-center justify-between mb-8">
-              <span class="text-xs font-mono px-3 py-1 bg-stone-200/60 dark:bg-stone-800 text-stone-700 dark:text-stone-300 rounded-md">Prodotto 03</span>
-              <span class="text-2xl">🧠</span>
+            <div class="flex justify-between items-center mb-8">
+              <span class="text-xs font-mono text-stone-500">PILLAR // 03</span>
+              <span class="w-2 h-2 rounded-full bg-amber-500"></span>
             </div>
-            <h3 class="text-xl font-semibold mb-3 text-stone-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+            <h3 class="text-2xl font-medium text-white mb-4 group-hover:text-amber-400 transition-colors">
               Spatial Canvas UI
             </h3>
-            <p class="text-sm text-stone-600 dark:text-stone-400 leading-relaxed font-light mb-6">
-              Sostituzione del feed di chat con un'interfaccia a mappa neurale non-lineare. Idee, codice e relazioni visive si connettono nello spazio 2D/3D.
+            <p class="text-sm text-stone-400 leading-relaxed font-light">
+              Superamento della chat verticale. Mappe concettuali e grafi neurali interattivi per esplorare idee e dati in uno spazio 2D/3D.
             </p>
           </div>
-          <span class="text-xs font-medium text-amber-600 dark:text-amber-400 inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-            Anteprima dell'interfaccia →
+          <span class="text-xs font-mono text-stone-500 group-hover:text-amber-400 transition-colors">
+            SPATIAL_INTERFACE ↗
           </span>
-        </article>
+        </div>
 
       </div>
-    </div>
+    </section>
 
   </main>
 
-  <!-- FOOTER 5 COLONNE (Struttura OpenAI con Estetica Anthropic) -->
-  <footer class="w-full bg-brandPaper dark:bg-brandDark text-stone-900 dark:text-stone-100 border-t border-brandBorderLight dark:border-brandBorderDark pt-16 pb-12 transition-colors duration-300">
-    <div class="max-w-7xl mx-auto px-6 md:px-12">
-
-      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-y-10 gap-x-8 text-sm">
-
-        <!-- Colonna 1 -->
-        <div class="space-y-6">
-          <h3 class="text-xs font-semibold uppercase tracking-wider text-stone-400 dark:text-stone-500">Ricerca</h3>
-          <ul class="space-y-3 font-medium text-stone-600 dark:text-stone-400">
-            <li><a href="#" class="hover:text-stone-900 dark:hover:text-white transition-colors">Swarm Intelligence</a></li>
-            <li><a href="#" class="hover:text-stone-900 dark:hover:text-white transition-colors">Edge Model Optimization</a></li>
-            <li><a href="#" class="hover:text-stone-900 dark:hover:text-white transition-colors">Spatial Interfacing</a></li>
+  <!-- FOOTER (Iconico, imponente e pulito) -->
+  <footer class="w-full border-t border-borderDark bg-openaiDark pt-16 pb-12 px-6 lg:px-16 text-stone-400 text-sm">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16">
+        <div>
+          <h4 class="text-xs font-mono uppercase text-stone-200 mb-4 tracking-wider">Research</h4>
+          <ul class="space-y-3 font-light text-xs">
+            <li><a href="#" class="hover:text-white transition-colors">Swarm Multi-Agent</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Edge Neural Nets</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Spatial Mapping</a></li>
           </ul>
         </div>
-
-        <!-- Colonna 2 -->
-        <div class="space-y-6">
-          <h3 class="text-xs font-semibold uppercase tracking-wider text-stone-400 dark:text-stone-500">Prodotti</h3>
-          <ul class="space-y-3 font-medium text-stone-600 dark:text-stone-400">
-            <li><a href="#" class="hover:text-stone-900 dark:hover:text-white transition-colors">Beeload Ecosystem</a></li>
-            <li><a href="#" class="hover:text-stone-900 dark:hover:text-white transition-colors">Mobile PWA Engine</a></li>
-            <li><a href="#" class="hover:text-stone-900 dark:hover:text-white transition-colors">Spatial Canvas</a></li>
+        <div>
+          <h4 class="text-xs font-mono uppercase text-stone-200 mb-4 tracking-wider">Ecosystem</h4>
+          <ul class="space-y-3 font-light text-xs">
+            <li><a href="#" class="hover:text-white transition-colors">Beeload Core</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Mobile Engine</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Spatial UI</a></li>
           </ul>
         </div>
-
-        <!-- Colonna 3 -->
-        <div class="space-y-6">
-          <h3 class="text-xs font-semibold uppercase tracking-wider text-stone-400 dark:text-stone-500">Infrastruttura</h3>
-          <ul class="space-y-3 font-medium text-stone-600 dark:text-stone-400">
-            <li><a href="#" class="hover:text-stone-900 dark:hover:text-white transition-colors">Edge Runtime</a></li>
-            <li><a href="#" class="hover:text-stone-900 dark:hover:text-white transition-colors">API Access</a></li>
-            <li><a href="#" class="hover:text-stone-900 dark:hover:text-white transition-colors">GitHub Repository</a></li>
+        <div>
+          <h4 class="text-xs font-mono uppercase text-stone-200 mb-4 tracking-wider">Connect</h4>
+          <ul class="space-y-3 font-light text-xs">
+            <li><a href="https://github.com/beeload-ai" class="hover:text-white transition-colors">GitHub</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">X / Twitter</a></li>
+            <li><a href="mailto:contact@beeload.it" class="hover:text-white transition-colors">Email Us</a></li>
           </ul>
         </div>
-
-        <!-- Colonna 4 -->
-        <div class="space-y-6">
-          <h3 class="text-xs font-semibold uppercase tracking-wider text-stone-400 dark:text-stone-500">Laboratorio</h3>
-          <ul class="space-y-3 font-medium text-stone-600 dark:text-stone-400">
-            <li><a href="#" class="hover:text-stone-900 dark:hover:text-white transition-colors">Visione & Manifesto</a></li>
-            <li><a href="#" class="hover:text-stone-900 dark:hover:text-white transition-colors">Contatti</a></li>
-            <li><a href="#" class="hover:text-stone-900 dark:hover:text-white transition-colors">News & Aggiornamenti</a></li>
+        <div>
+          <h4 class="text-xs font-mono uppercase text-stone-200 mb-4 tracking-wider">Company</h4>
+          <ul class="space-y-3 font-light text-xs">
+            <li><a href="#" class="hover:text-white transition-colors">About Beeload</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
           </ul>
         </div>
+      </div>
 
-        <!-- Colonna 5 -->
-        <div class="space-y-6 col-span-2 lg:col-span-1">
-          <h3 class="text-xs font-semibold uppercase tracking-wider text-stone-400 dark:text-stone-500">Note Legali</h3>
-          <ul class="space-y-3 font-medium text-stone-600 dark
+      <div class="pt-8 border-t border-borderDark flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-stone-600">
+        <div class="flex items-center gap-3">
+          <span class="font-arian font-bold text-stone-300 text-sm">Beeload</span>
+          <span>© 2026 BEELOAD LABS. ALL RIGHTS RESERVED.</span>
+        </div>
+        <span>BUILT FOR THE FRONTIER</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    function checkFallback() {
+      const imgDark = document.getElementById('logo-dark');
+      if (!imgDark || imgDark.style.display === 'none') {
+        document.getElementById('logo-fallback').classList.remove('hidden');
+      }
+    }
+
+    const messages = [
+      "Infrastruttura Swarm Intelligence in fase di calibrazione.",
+      "Ottimizzazione modelli Edge per ambienti mobile PWA.",
+      "Sviluppo interfaccia grafica a mappa spaziale non-lineare.",
+      "Beeload Ecosystem v1.0 — Preview Environment."
+    ];
+
+    let currentIndex = 0;
+    const textElement = document.getElementById("rotating-text");
+
+    function updateText() {
+      if(!textElement) return;
+      textElement.classList.add("opacity-0");
+      setTimeout(() => {
+        textElement.textContent = messages[currentIndex];
+        textElement.classList.remove("opacity-0");
+        currentIndex = (currentIndex + 1) % messages.length;
+      }, 500);
+    }
+
+    setInterval(updateText, 3800);
+  </script>
+</body>
+</html>
